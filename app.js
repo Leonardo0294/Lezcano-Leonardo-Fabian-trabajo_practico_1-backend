@@ -1,24 +1,23 @@
-const express = require('express');
-const app = express();
+// Importación de las bibliotecas necesarias
+const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const path = require("path");
-const port = process.env.PORT || 4000;
-const { conectarDB, sequelize } = require("./database");
+const { conectarDB, sequelize } = require("./database"); // Importación de la función conectarDB y la instancia sequelize
+require("dotenv").config();
 
+// Creación de una instancia de la aplicación Express
+const app = express();
 
-require('dotenv').config();
+// Configuración de middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(helmet()); // Middleware para mejorar la seguridad de la aplicación
+app.use(morgan("dev")); // Middleware para el registro de solicitudes en la consola
 
-
-sequelize.sync({force:true}).then(() =>{
-    console.log("Nos hemos conectado a la base de datos")
-}
-
-)
+// Sincronización de modelos con la base de datos
 sequelize
-  .sync({ alter: true })
+  .sync({ alter: true }) // Sincroniza los modelos con la base de datos, aplicando cambios si es necesario
   .then(() => {
     console.log("Modelos sincronizados con éxito.");
   })
@@ -26,14 +25,15 @@ sequelize
     console.error("Error al sincronizar modelos:", error);
   });
 
+// Configuración del puerto del servidor
+const port = process.env.PORT || 4000;
 
-
-
+// Inicio del servidor
 app.listen(port, () => {
-    console.log(`Servidor corriendo en el puerto: ${port}`);
-    try {
-        conectarDB();
-    } catch (err) {
-        console.error(err);
-    }
+  console.log(`Servidor corriendo en el puerto: ${port}`);
+  try {
+    conectarDB(); // Conexión a la base de datos utilizando la función conectarDB
+  } catch (err) {
+    console.error(err);
+  }
 });

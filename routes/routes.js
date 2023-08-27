@@ -1,4 +1,3 @@
-// routes/routes.js
 const express = require("express");
 const { body, param } = require("express-validator");
 const router = express.Router();
@@ -120,4 +119,4 @@ router.delete(
   eliminarTareas
 );
 
-module.exports = router;
+module.exports = router; // Exportación del enrutador

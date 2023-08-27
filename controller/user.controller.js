@@ -1,21 +1,28 @@
-const { Usuario } = require('../models/user.model');
-const ctrl = {};
+const { Usuario } = require("../models/user.model"); // Importación del modelo "Usuario"
 
-ctrl.crearUsuario = async (req, res) => {
+// Objeto que contendrá los métodos de los controladores
+const ctrlUsuario = {};
+
+// Controlador para crear un nuevo usuario
+ctrlUsuario.crearUsuario = async (req, res) => {
   try {
     const { nombre, email } = req.body;
     // Validaciones
     if (!nombre || !email) {
-      return res.status(400).json({ error: 'Nombre y correo electrónico son obligatorios' });
+      return res
+        .status(400)
+        .json({ error: "Nombre y correo electrónico son obligatorios" });
     }
 
     const usuario = await Usuario.create({ nombre, email });
     return res.status(201).json(usuario);
   } catch (error) {
-    console.error('Error al crear usuario:', error);
-    return res.status(500).json({ error: 'No se pudo crear el usuario' });
+    console.error("Error al crear usuario:", error);
+    return res.status(500).json({ error: "No se pudo crear el usuario" });
   }
-}
+};
+
+// Controlador para obtener todos los usuarios
 ctrlUsuario.obtenerUsuarios = async (req, res) => {
   try {
     const usuarios = await Usuario.findAll();
@@ -25,6 +32,7 @@ ctrlUsuario.obtenerUsuarios = async (req, res) => {
   }
 };
 
+// Controlador para obtener un usuario por su ID
 ctrlUsuario.obtenerUsuario = async (req, res) => {
   try {
     const usuario = await Usuario.findByPk(req.params.id);
@@ -38,6 +46,7 @@ ctrlUsuario.obtenerUsuario = async (req, res) => {
   }
 };
 
+// Controlador para actualizar un usuario por su ID
 ctrlUsuario.actualizarUsuario = async (req, res) => {
   try {
     const usuario = await Usuario.findByPk(req.params.id);
@@ -52,6 +61,7 @@ ctrlUsuario.actualizarUsuario = async (req, res) => {
   }
 };
 
+// Controlador para eliminar un usuario por su ID
 ctrlUsuario.eliminarUsuario = async (req, res) => {
   try {
     const usuario = await Usuario.findByPk(req.params.id);
@@ -65,5 +75,5 @@ ctrlUsuario.eliminarUsuario = async (req, res) => {
     res.status(500).json({ mensaje: "Error al eliminar usuario" });
   }
 };
-module.exports = ctrl;
-// Otros métodos del CRUD para Usuario, como obtener, actualizar y eliminar usuarios, se implementan de manera similar.
+
+module.exports = ctrlUsuario; // Exportación del objeto de controladores

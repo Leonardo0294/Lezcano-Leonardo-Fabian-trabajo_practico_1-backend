@@ -1,25 +1,29 @@
-const { Tarea } = require('../models/tareas.model');
+const { Tarea } = require("../models/tareas.model"); // Importación del modelo "Tarea"
 
+// Objeto que contendrá los métodos de los controladores
+const ctrlTarea = {};
 
-// Otros métodos del CRUD para Tarea, como obtener, actualizar y eliminar tareas, se implementan de manera similar.
+// Controlador para crear una nueva tarea
 ctrlTarea.crearTarea = async (req, res) => {
   try {
-    const nuevaMusica = await Tarea.create(req.body);
+    const nuevaTarea = await Tarea.create(req.body);
     res.status(201).json(nuevaTarea);
   } catch (error) {
-    res.status(400).json({ mensaje: "Error al crear Tarea" });
+    res.status(400).json({ mensaje: "Error al crear tarea" });
   }
 };
 
-ctrlTarea.obtenerTarea = async (req, res) => {
+// Controlador para obtener todas las tareas
+ctrlTarea.obtenerTareas = async (req, res) => {
   try {
-    const tarea = await Tarea.findAll();
-    res.json(tarea);
+    const tareas = await Tarea.findAll();
+    res.json(tareas);
   } catch (error) {
     res.status(500).json({ mensaje: "Error al obtener tareas" });
   }
 };
 
+// Controlador para obtener una tarea por su ID
 ctrlTarea.obtenerTarea = async (req, res) => {
   try {
     const tarea = await Tarea.findByPk(req.params.id);
@@ -33,7 +37,8 @@ ctrlTarea.obtenerTarea = async (req, res) => {
   }
 };
 
-ctrlMusica.actualizarTarea = async (req, res) => {
+// Controlador para actualizar una tarea por su ID
+ctrlTarea.actualizarTarea = async (req, res) => {
   try {
     const tarea = await Tarea.findByPk(req.params.id);
     if (tarea) {
@@ -47,6 +52,7 @@ ctrlMusica.actualizarTarea = async (req, res) => {
   }
 };
 
+// Controlador para eliminar una tarea por su ID
 ctrlTarea.eliminarTarea = async (req, res) => {
   try {
     const tarea = await Tarea.findByPk(req.params.id);
@@ -61,4 +67,4 @@ ctrlTarea.eliminarTarea = async (req, res) => {
   }
 };
 
-module.exports = ctrlTarea;
+module.exports = ctrlTarea; // Exportación del objeto de controladores

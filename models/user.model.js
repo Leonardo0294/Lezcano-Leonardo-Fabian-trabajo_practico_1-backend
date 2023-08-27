@@ -1,6 +1,6 @@
-// En usuario.model.js
-const Proyecto = require("./proyecto.model"); // Importa el modelo Proyecto
+const Proyecto = require("./proyecto.model"); // Importación del modelo Proyecto
 
+// Definición del modelo "Usuarios"
 const Usuarios = sequelize.define(
   "usuarios",
   {
@@ -29,7 +29,6 @@ const Usuarios = sequelize.define(
       type: DataTypes.DATE,
       allowNull: false,
     },
-
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -46,11 +45,16 @@ const Usuarios = sequelize.define(
     },
   },
   {
-    createdAt: true,
-    updatedAt: true,
-    deletedAt: true,
-    tableName: "Usuarios",
+    // Configuraciones adicionales del modelo
+    createdAt: true, // Habilita el registro de la fecha de creación
+    updatedAt: true, // Habilita el registro de la fecha de actualización
+    deletedAt: true, // Habilita el registro de la fecha de eliminación (para soft deletes)
+    tableName: "Usuarios", // Especifica el nombre de la tabla en la base de datos
   }
 );
-Usuario.sync();
+
+// Sincronización del modelo con la base de datos
+Usuario.sync(); // Sincroniza el modelo con la base de datos
+
+// Exportación del modelo para su uso en otras partes de la aplicación
 module.exports = Usuario;
