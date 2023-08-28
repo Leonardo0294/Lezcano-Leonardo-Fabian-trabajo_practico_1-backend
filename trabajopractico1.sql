@@ -1,0 +1,595 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 28-08-2023 a las 20:05:42
+-- Versión del servidor: 10.4.28-MariaDB
+-- Versión de PHP: 8.0.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `trabajopractico1`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `proyecto`
+--
+
+CREATE TABLE `proyecto` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `deletedAt` datetime DEFAULT NULL,
+  `UsuarioId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `proyecto`
+--
+
+INSERT INTO `proyecto` (`id`, `nombre`, `createdAt`, `updatedAt`, `deletedAt`, `UsuarioId`) VALUES
+(1, 'tarea', '2023-08-28 17:27:31', '2023-08-28 17:27:31', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tareas`
+--
+
+CREATE TABLE `tareas` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `descripcion` varchar(255) DEFAULT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `deletedAt` datetime DEFAULT NULL,
+  `ProyectoId` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tareas`
+--
+
+INSERT INTO `tareas` (`id`, `nombre`, `descripcion`, `createdAt`, `updatedAt`, `deletedAt`, `ProyectoId`) VALUES
+(1, 'tarea', 'HOLAlll', '2023-08-28 17:44:21', '2023-08-28 17:44:21', NULL, NULL),
+(2, 'tarea', 'HOLAlll', '2023-08-28 18:04:20', '2023-08-28 18:04:20', NULL, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `apellido` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telefono` int(11) NOT NULL,
+  `createdAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `updatedAt` datetime NOT NULL DEFAULT current_timestamp(),
+  `deletedAt` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nombre`, `apellido`, `email`, `telefono`, `createdAt`, `updatedAt`, `deletedAt`) VALUES
+(1, 'Brian', 'Cespedes', 'ces@gmail.com', 2147483647, '2023-08-28 17:03:22', '2023-08-28 17:03:22', NULL);
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `proyecto`
+--
+ALTER TABLE `proyecto`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `UsuarioId` (`UsuarioId`);
+
+--
+-- Indices de la tabla `tareas`
+--
+ALTER TABLE `tareas`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `ProyectoId` (`ProyectoId`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `proyecto`
+--
+ALTER TABLE `proyecto`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `tareas`
+--
+ALTER TABLE `tareas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `proyecto`
+--
+ALTER TABLE `proyecto`
+  ADD CONSTRAINT `proyecto_ibfk_1` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_10` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_100` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_101` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_102` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_103` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_104` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_105` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_106` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_107` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_108` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_109` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_11` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_110` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_111` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_112` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_113` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_114` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_115` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_116` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_117` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_118` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_119` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_12` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_120` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_121` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_122` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_123` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_124` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_125` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_126` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_127` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_13` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_14` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_15` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_16` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_17` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_18` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_19` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_2` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_20` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_21` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_22` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_23` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_24` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_25` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_26` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_27` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_28` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_29` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_3` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_30` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_31` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_32` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_33` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_34` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_35` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_36` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_37` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_38` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_39` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_4` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_40` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_41` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_42` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_43` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_44` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_45` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_46` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_47` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_48` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_49` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_5` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_50` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_51` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_52` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_53` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_54` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_55` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_56` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_57` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_58` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_59` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_6` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_60` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_61` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_62` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_63` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_64` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_65` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_66` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_67` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_68` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_69` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_7` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_70` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_71` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_72` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_73` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_74` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_75` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_76` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_77` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_78` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_79` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_8` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_80` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_81` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_82` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_83` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_84` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_85` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_86` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_87` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_88` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_89` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_9` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_90` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_91` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_92` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_93` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_94` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_95` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_96` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_97` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_98` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `proyecto_ibfk_99` FOREIGN KEY (`UsuarioId`) REFERENCES `usuarios` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tareas`
+--
+ALTER TABLE `tareas`
+  ADD CONSTRAINT `tareas_ibfk_1` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_10` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_100` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_101` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_102` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_103` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_104` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_105` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_106` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_107` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_108` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_109` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_11` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_110` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_111` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_112` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_113` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_114` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_115` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_116` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_117` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_118` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_119` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_12` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_120` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_121` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_122` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_123` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_124` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_125` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_126` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_127` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_128` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_129` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_13` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_130` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_131` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_132` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_133` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_134` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_135` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_136` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_137` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_138` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_139` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_14` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_140` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_141` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_142` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_143` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_144` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_145` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_146` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_147` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_148` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_149` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_15` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_150` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_151` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_152` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_153` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_154` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_155` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_156` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_157` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_158` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_159` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_16` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_160` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_161` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_162` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_163` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_164` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_165` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_166` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_167` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_168` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_169` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_17` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_170` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_171` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_172` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_173` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_174` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_175` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_176` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_177` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_178` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_179` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_18` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_180` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_181` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_182` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_183` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_184` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_185` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_186` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_187` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_188` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_189` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_19` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_190` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_191` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_192` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_193` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_194` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_195` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_196` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_197` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_198` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_199` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_2` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_20` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_200` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_201` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_202` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_203` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_204` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_205` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_206` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_207` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_208` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_209` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_21` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_210` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_211` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_212` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_213` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_214` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_215` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_216` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_217` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_218` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_219` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_22` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_220` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_221` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_222` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_223` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_224` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_225` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_226` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_227` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_228` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_229` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_23` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_230` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_231` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_232` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_233` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_234` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_235` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_236` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_237` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_238` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_239` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_24` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_240` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_241` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_242` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_243` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_244` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_245` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_246` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_247` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_248` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_249` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_25` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_250` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_251` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_252` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_253` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_254` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_255` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_256` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_257` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_258` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_259` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_26` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_260` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_261` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_262` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_263` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_264` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_265` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_266` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_267` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_268` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_269` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_27` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_270` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_271` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_272` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_273` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_274` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_275` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_276` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_277` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_278` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_279` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_28` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_280` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_281` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_282` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_283` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_284` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_285` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_286` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_287` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_288` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_289` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_29` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_290` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_291` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_292` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_293` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_294` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_295` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_296` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_297` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_298` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_299` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_3` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_30` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_300` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_301` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_302` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_303` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_304` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_305` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_306` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_307` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_308` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_309` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_31` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_310` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_311` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_32` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_33` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_34` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_35` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_36` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_37` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_38` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_39` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_4` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_40` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_41` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_42` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_43` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_44` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_45` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_46` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_47` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_48` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_49` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_5` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_50` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_51` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_52` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_53` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_54` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_55` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_56` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_57` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_58` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_59` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_6` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_60` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_61` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_62` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_63` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_64` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_65` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_66` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_67` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_68` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_69` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_7` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_70` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_71` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_72` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_73` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_74` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_75` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_76` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_77` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_78` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_79` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_8` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_80` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_81` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_82` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_83` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_84` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_85` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_86` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_87` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_88` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_89` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_9` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_90` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_91` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_92` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_93` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_94` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_95` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_96` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_97` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_98` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `tareas_ibfk_99` FOREIGN KEY (`ProyectoId`) REFERENCES `proyecto` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
