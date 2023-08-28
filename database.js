@@ -1,10 +1,14 @@
-require("dotenv").config(); // Carga las variables de entorno desde el archivo .env
-
-const { Sequelize, Model, DataTypes } = require("sequelize"); // Importa Sequelize y otros componentes necesarios
+import dotenv from "dotenv";
+// Carga las variables de entorno desde el archivo .env
+dotenv.config(); 
+ // Importa Sequelize y otros componentes necesarios
+import { Sequelize, DataTypes } from "sequelize";
 
 // Crea una nueva instancia de conexión a la base de datos utilizando los datos de conexión proporcionados en las variables de entorno
 const sequelize = new Sequelize(
-  process.env.DB_NAME, // Nombre de la base de datos
+  // Nombre de la base de datos
+  process.env.DB_NAME,
+  // Nombre de la base de datos
   process.env.DB_USER, // Usuario de la base de datos
   process.env.DB_PASSWORD, // Contraseña del usuario
   {
@@ -25,8 +29,4 @@ const conectarDB = async () => {
   }
 };
 
-module.exports = {
-  sequelize,
-  DataTypes,
-  conectarDB,
-};
+export { sequelize, DataTypes, conectarDB };

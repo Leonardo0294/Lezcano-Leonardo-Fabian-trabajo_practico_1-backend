@@ -1,7 +1,8 @@
-// Importación de las bibliotecas necesarias
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("../database"); // Importación de la instancia de Sequelize previamente configurada
-const Usuario = require("./usuario.model"); // Importación del modelo de Usuario para establecer relaciones
+// Importación de los módulos necesarios
+import { Sequelize, DataTypes } from "sequelize";
+import { sequelize } from "../database.js"; // Ajusta la ruta si es necesario
+// Importación de la instancia de Sequelize previamente configurada
+import Usuario from "./user.model.mjs"; // Importación del modelo de Usuario para establecer relaciones
 
 // Definición del modelo "Proyecto"
 const Proyecto = sequelize.define(
@@ -40,7 +41,7 @@ Proyecto.belongsTo(Usuario); // Establece la relación: Un proyecto pertenece a 
 Usuario.hasMany(Proyecto); // Establece la relación: Un usuario puede tener varios proyectos
 
 // Sincronización del modelo con la base de datos
-Proyecto.sync(); // Sincroniza el modelo con la base de datos, creando la tabla si no existe
+await Proyecto.sync(); // Sincroniza el modelo con la base de datos, creando la tabla si no existe
 
 // Exportación del modelo para su uso en otras partes de la aplicación
-module.exports = Proyecto;
+export default Proyecto;

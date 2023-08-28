@@ -1,7 +1,7 @@
 // Importación de las bibliotecas necesarias
-const { Sequelize, DataTypes } = require("sequelize");
-const sequelize = require("../database"); // Importación de la instancia de Sequelize previamente configurada
-const Proyecto = require("./proyecto.model"); // Importación del modelo de Proyecto para establecer relaciones
+import { Sequelize, DataTypes } from "sequelize";
+import { sequelize } from "../database.js";
+import Proyecto from "./proyecto.model.mjs"; // Nota la extensión .mjs
 
 // Definición del modelo "Tarea"
 const Tarea = sequelize.define(
@@ -31,19 +31,19 @@ const Tarea = sequelize.define(
   },
   {
     // Configuraciones adicionales del modelo
-    createdAt: true, // Habilita el registro de la fecha de creación
-    updatedAt: true, // Habilita el registro de la fecha de actualización
-    deletedAt: true, // Habilita el registro de la fecha de eliminación (para soft deletes)
-    tableName: "Tareas", // Especifica el nombre de la tabla en la base de datos
+    createdAt: true,
+    updatedAt: true,
+    deletedAt: true,
+    tableName: "Tareas",
   }
 );
 
 // Establecimiento de relaciones entre modelos
-Tarea.belongsTo(Proyecto); // Establece la relación: Una tarea pertenece a un proyecto
-Proyecto.hasMany(Tarea); // Establece la relación: Un proyecto puede tener varias tareas
+Tarea.belongsTo(Proyecto);
+Proyecto.hasMany(Tarea);
 
 // Sincronización del modelo con la base de datos
-Tarea.sync({ alter: true }); // Sincroniza el modelo con la base de datos, aplicando cambios si es necesario
+await Tarea.sync({ alter: true });
 
 // Exportación del modelo para su uso en otras partes de la aplicación
-module.exports = Tarea;
+export default Tarea;
